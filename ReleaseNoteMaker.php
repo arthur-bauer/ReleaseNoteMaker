@@ -1,5 +1,7 @@
 <?php
 
+// v0.1, 2015-12-16
+
 $tags=`git tag | grep ^v | sort `; // get all the tags that start with a "v"
 $tags=explode("\n",$tags);
 
