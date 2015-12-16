@@ -11,6 +11,11 @@ $tags[$counter+1]="HEAD"; // and the current HEAD as last "version"
 echo "# Release notes for ";
 echo `pwd`;
 
+// Get the first commit and add it at the beginning of the list, so we also get the first commit messages
+$commit1=`git log --oneline | tail -n 1`;
+$commit1=explode(" ",$commit1);
+array_unshift($tags,$commit1[0]);
+
 // loop through all the tags and create an output for that version
 for ($i=0;$i<=$counter;$i++)
 {
