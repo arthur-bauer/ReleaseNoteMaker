@@ -19,7 +19,7 @@ $commit1=explode(" ",$commit1);
 array_unshift($tags,$commit1[0]);
 
 // loop through all the tags and create an output for that version
-for ($i=0;$i<=$counter;$i++)
+for ($i=0;$i<=$counter+1;$i++)
 {
 $j=$i+1;
 echo "\n### $tags[$j]\n";
