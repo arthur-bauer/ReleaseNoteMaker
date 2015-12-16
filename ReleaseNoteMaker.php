@@ -1,7 +1,7 @@
 #!/usr/bin/php
 <?php
 
-// v0.1, 2015-12-16
+// v0.2, 2015-12-16
 
 $tags=`git tag | grep ^v | sort `; // get all the tags that start with a "v"
 
