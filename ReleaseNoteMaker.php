@@ -12,8 +12,8 @@ $counter=count($tags)-2;
 $tags[$counter+1]="HEAD"; // and the current HEAD as last "version"
 
 //start output
-echo "# Release notes for ";
-echo `pwd`;
+echo "# Release notes";
+//echo `pwd`;
 
 // Get the first commit and add it at the beginning of the list, so we also get the first commit messages
 $commit1=`git log --oneline | tail -n 1`;
