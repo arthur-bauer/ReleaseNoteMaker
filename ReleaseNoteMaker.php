@@ -25,7 +25,7 @@ for ($i=0;$i<=$counter+1;$i++)
 {
 $j=$i+1;
 $log= "\n## $tags[$j]\n";
-$log.= "*Changes from $tags[$i] to $tags[$j]*\n\n";
+$log.= "*Changes from `$tags[$i]` to `$tags[$j]`:*\n\n";
 
 // This command creates the actual release note, greps out commits that contain "(minor)" and "Todo"
 // Feel free to add more greps if needed (e.g. for "version number update" etc)
