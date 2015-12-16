@@ -3,6 +3,7 @@
 // v0.1, 2015-12-16
 
 $tags=`git tag | grep ^v | sort `; // get all the tags that start with a "v"
+
 $tags=explode("\n",$tags);
 
 $counter=count($tags)-2;
@@ -22,13 +23,21 @@ array_unshift($tags,$commit1[0]);
 for ($i=0;$i<=$counter+1;$i++)
 {
 $j=$i+1;
-echo "\n### $tags[$j]\n";
-echo "*Changes from $tags[$i] - $tags[$j]*\n\n";
+$log= "\n### $tags[$j]\n";
+$log.= "*Changes from $tags[$i] to $tags[$j]*\n\n";
 
 // This command creates the actual release note, greps out commits that contain "(minor)" and "Todo"
 // Feel free to add more greps if needed (e.g. for "version number update" etc)
-$com="git log --no-merges --pretty=format:\"* %s\" ".$tags[$i]."..".$tags[$j]." | grep -v \(minor\) | grep -vi \"Todo\"";
-echo `$com`;
+$com="git log --no-merges --pretty=format:\"* %s\" ".$tags[$i]."..".$tags[$j]." | grep -v \(minor\) | grep -vi \"Todo\" | grep -vi \"Version number\" | grep -vi \"Versionsnummer\" ";
+$log.= `$com`;
+
+$log=str_replace("HEAD","current version",$log);
+$log=str_replace($commit1[0],"project start",$log);
+
+
+echo $log;
+
+
 }
 
 
