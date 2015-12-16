@@ -10,7 +10,7 @@ $counter=count($tags)-2;
 $tags[$counter+1]="HEAD"; // and the current HEAD as last "version"
 
 //start output
-echo "# Release notes for ";
+echo "## Release notes for ";
 echo `pwd`;
 
 // Get the first commit and add it at the beginning of the list, so we also get the first commit messages
@@ -22,8 +22,8 @@ array_unshift($tags,$commit1[0]);
 for ($i=0;$i<=$counter;$i++)
 {
 $j=$i+1;
-echo "\n## $tags[$j]\n";
-echo "Changes from $tags[$i] - $tags[$j]\n\n";
+echo "\n### $tags[$j]\n";
+echo "*Changes from $tags[$i] - $tags[$j]*\n\n";
 
 // This command creates the actual release note, greps out commits that contain "(minor)" and "Todo"
 // Feel free to add more greps if needed (e.g. for "version number update" etc)
