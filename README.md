@@ -19,7 +19,7 @@ Features
 
 Release notes
 ===============
-v0.1
+v0.1, 2015-12-16
 ----------------
 First version
 
