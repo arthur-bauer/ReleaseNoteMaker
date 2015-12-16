@@ -3,6 +3,14 @@ Description
 
 ReleaseNoteMaker: A PHP script to generate a complete Release Note list
 
+## Usage
+ 
+    cd <path/to/repo>
+    php <path to ReleaseNotemaker.php> > ReleaseNotes.md
+
+You probably want to clean up unnecessary commits in the final list.
+
+
 Bugs
 ===============
 
