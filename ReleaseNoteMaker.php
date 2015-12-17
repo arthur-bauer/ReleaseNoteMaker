@@ -27,20 +27,15 @@ $j=$i+1;
 $log= "\n## $tags[$j]\n";
 $log.= "*Changes from `$tags[$i]` to `$tags[$j]`:*\n\n";
 
-// This command creates the actual release note, greps out commits that contain "(minor)" and "Todo"
-// Feel free to add more greps if needed (e.g. for "version number update" etc)
+// This command creates the actual release note, greps out commits that contain "(minor)", "Todo" and "Version number"/"Versionsnummer"
+// Feel free to add more greps if needed 
 $com="git log --reverse --no-merges --pretty=format:\"* %s\" ".$tags[$i]."..".$tags[$j]." | grep -v \(minor\) | grep -vi \"Todo\" | grep -vi \"Version number\" | grep -vi \"Versionsnummer\" ";
 $log.= `$com`;
 
+// replace "HEAD" and the first commit hash with a more human-readable text. 
 $log=str_replace("HEAD","current version",$log);
 $log=str_replace($commit1[0],"project start",$log);
 
-
 echo $log;
-
-
 }
-
-
-
 ?>
