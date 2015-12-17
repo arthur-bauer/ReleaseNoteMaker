@@ -1,11 +1,21 @@
 #!/usr/bin/php
 <?php
 
-// v0.3, 2015-12-17
+// v0.4, 2015-12-17
 
-$tags=trim(`git tag -l --sort="v:refname" "v*" `); // get all the tags that start with a "v"
+$tags=trim(`git tag -l "v*" `); // get all the tags that start with a "v"
 
 $tags=explode("\n",$tags);
+
+// a short routine to sort prerelease versions (with different type of suffixes) before their full version
+// it is important that one follows the semantic versioning principle closely:
+//
+//  vx.z.y-prerelease OR vx.z.y_prerelease
+// 
+// dash and underscore should not be mixed
+//
+
+usort($tags, 'version_compare');
 
 
 $counter=count($tags)-1;
