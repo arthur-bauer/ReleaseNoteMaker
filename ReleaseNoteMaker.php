@@ -24,9 +24,16 @@ array_unshift($tags,$commit1[0]);
 for ($i=0;$i<=$counter+1;$i++)
 {
 $j=$i+1;
+if ($tags[$j]!="HEAD") 
+{
 $log= "\n## $tags[$j]\n";
 $log.= "*Changes from `$tags[$i]` to `$tags[$j]`:*\n\n";
-
+}
+else 
+{
+$log= "\n## Current version (not yet released)\n";
+$log.= "*Changes from `$tags[$i]` to current version:*\n\n";
+}
 // This command creates the actual release note, greps out commits that contain "(minor)", "Todo" and "Version number"/"Versionsnummer"
 // Feel free to add more greps if needed 
 $com="git log --reverse --no-merges --pretty=format:\"* %s\" ".$tags[$i]."..".$tags[$j]." | grep -v \(minor\) | grep -vi \"Todo\" | grep -vi \"Version number\" | grep -vi \"Versionsnummer\" ";
