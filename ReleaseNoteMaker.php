@@ -53,5 +53,6 @@ $log=str_replace("HEAD","current version",$log);
 $log=str_replace($commit1[0],"project start",$log);
 
 echo $log;
+$log="";
 }
 ?>
