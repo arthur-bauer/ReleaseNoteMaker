@@ -1,7 +1,7 @@
 #!/usr/bin/php
 <?php
 
-// v0.3, 2015-12-17
+// v0.4, 2015-12-17
 
 $tags=trim(`git tag -l "v*" `); // get all the tags that start with a "v"
 
