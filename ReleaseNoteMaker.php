@@ -3,11 +3,12 @@
 
 // v0.2, 2015-12-16
 
-$tags=`git tag | grep ^v | sort `; // get all the tags that start with a "v"
+$tags=trim(`git tag -l --sort="v:refname" "v*" `); // get all the tags that start with a "v"
 
 $tags=explode("\n",$tags);
 
-$counter=count($tags)-2;
+
+$counter=count($tags)-1;
 
 $tags[$counter+1]="HEAD"; // and the current HEAD as last "version"
 
