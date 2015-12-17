@@ -47,7 +47,7 @@ $log= "\n## $tags[$j]\n";
 // let's get the tag message here and add it to the output
 $tagmessage=`git show $tags[$j]`;
 $tagmessage=explode("\n",$tagmessage);
-if ($tagmessage[4]) $log.="**".$tagmessage[4]."**  \n";
+if ($tagmessage[4]) $log.="**".trim($tagmessage[4])."**  \n";
 
 $log.= "*Changes from `$tags[$i]` to `$tags[$j]`:*\n\n";
 $log.= `$com`;
