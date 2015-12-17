@@ -52,3 +52,8 @@ Rename first and last commit in output: Give them better names than a commit num
 * Only creates output if there is actually anything new since the last version tag
 * Bugfix: Last entry was repeated under certain circumstances
 * Cleaner sorting of versions
+
+## v0.4
+*Changes from `v0.3` to `v0.4`:*
+
+* Switched to a more reliable sort function for version-numbers
