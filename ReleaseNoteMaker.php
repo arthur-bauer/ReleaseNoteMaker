@@ -1,13 +1,14 @@
 #!/usr/bin/php
 <?php
 
-// v0.2, 2015-12-16
+// v0.3, 2015-12-17
 
-$tags=`git tag | grep ^v | sort `; // get all the tags that start with a "v"
+$tags=trim(`git tag -l --sort="v:refname" "v*" `); // get all the tags that start with a "v"
 
 $tags=explode("\n",$tags);
 
-$counter=count($tags)-2;
+
+$counter=count($tags)-1;
 
 $tags[$counter+1]="HEAD"; // and the current HEAD as last "version"
 
@@ -24,23 +25,35 @@ array_unshift($tags,$commit1[0]);
 for ($i=0;$i<=$counter+1;$i++)
 {
 $j=$i+1;
+
+// This command creates the actual release note, greps out commits that contain "(minor)", "Todo" and "Version number"/"Versionsnummer"
+// Feel free to add more greps if needed 
+$com="git log --reverse --no-merges --pretty=format:\"* %s\" ".$tags[$i]."..".$tags[$j]." | grep -v \(minor\) | grep -vi \"Todo\" | grep -vi \"Version number\" | grep -vi \"Versionsnummer\" ";
+
+if ($tags[$j]!="HEAD") 
+{
 $log= "\n## $tags[$j]\n";
 $log.= "*Changes from `$tags[$i]` to `$tags[$j]`:*\n\n";
-
-// This command creates the actual release note, greps out commits that contain "(minor)" and "Todo"
-// Feel free to add more greps if needed (e.g. for "version number update" etc)
-$com="git log --no-merges --pretty=format:\"* %s\" ".$tags[$i]."..".$tags[$j]." | grep -v \(minor\) | grep -vi \"Todo\" | grep -vi \"Version number\" | grep -vi \"Versionsnummer\" ";
 $log.= `$com`;
-
-$log=str_replace("HEAD","current version",$log);
-$log=str_replace($commit1[0],"project start",$log);
-
-
-echo $log;
-
-
+}
+else 
+{
+// let's check if there is anything new anyway
+$check=`$com`;
+if ($check!==NULL)
+{
+$log= "\n## Current version (not yet released)\n";
+$log.= "*Changes from `$tags[$i]` to current version:*\n\n";
+$log.= `$com`;
+}
 }
 
 
+// replace "HEAD" and the first commit hash with a more human-readable text. 
+$log=str_replace("HEAD","current version",$log);
+$log=str_replace($commit1[0],"project start",$log);
 
+echo $log;
+$log="";
+}
 ?>
