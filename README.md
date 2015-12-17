@@ -43,8 +43,9 @@ Rename first and last commit in output: Give them better names than a commit num
 * Adjusted Markdown output
 * Removed path to project from Release notes header
 
-## current version
-*Changes from `v0.2` to `current version`:*
+## Current version (not yet released)
+*Changes from `v0.2` to current version:*
 
 * Added a "--reverse"  to bring commits in a more logical order
 * Adjusted some comments in the source code
+* Improved output for latest, not yet released changes
