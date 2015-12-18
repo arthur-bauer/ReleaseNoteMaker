@@ -1,7 +1,7 @@
 #!/usr/bin/php
 <?php
 date_default_timezone_set("Europe/Berlin");
-// v0.4, 2015-12-17
+// v0.5, 2015-12-18
 
 $tags=trim(`git tag -l "v*" `); // get all the tags that start with a "v"
 

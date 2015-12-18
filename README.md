@@ -46,11 +46,13 @@ Add date to release note: The date of the commit with the version number should 
 2015-12-16  
 *Changes from `v0.1` to `v0.2`:*
 
+* Updated the Markdown output a bit
 * Bugfix: Added output for latest changes again
 * F001: Rename first and last commit in output - FIXED
 * Added header and changed access rights to make the script executable
 * Adjusted Markdown output
 * Removed path to project from Release notes header
+* Improved markdown for subline
 
 ## v0.3
 **Third release**  
@@ -71,8 +73,10 @@ Add date to release note: The date of the commit with the version number should 
 
 * Switched to a more reliable sort function for version-numbers
 
-## Current version (not yet released)
-*Changes from `v0.4` to current version:*
+## v0.5
+**Last development release**  
+2015-12-18  
+*Changes from `v0.4` to `v0.5`:*
 
 * Added tag message to output
 * Small bugfix for tag commit message that messed up the markdown
