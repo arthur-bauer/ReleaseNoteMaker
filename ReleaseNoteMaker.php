@@ -1,6 +1,6 @@
 #!/usr/bin/php
 <?php
-
+date_default_timezone_set("Europe/Berlin");
 // v0.4, 2015-12-17
 
 $tags=trim(`git tag -l "v*" `); // get all the tags that start with a "v"
@@ -47,7 +47,14 @@ $log= "\n## $tags[$j]\n";
 // let's get the tag message here and add it to the output
 $tagmessage=`git show $tags[$j]`;
 $tagmessage=explode("\n",$tagmessage);
-if ($tagmessage[4]) $log.="**".trim($tagmessage[4])."**  \n";
+if ($tagmessage[4]) $log.="**".trim($tagmessage[4])."**";
+
+// let's get the commit date here and add it to the output
+$tagtime=`git show --pretty=tformat:%at $tags[$j]`;
+$tagtime=explode("\n",$tagtime);
+if ($tagtime[4]) $log.=", ".date("Y-m-d",$tagtime[4])."  \n";
+
+
 
 $log.= "*Changes from `$tags[$i]` to `$tags[$j]`:*\n\n";
 $log.= `$com`;
