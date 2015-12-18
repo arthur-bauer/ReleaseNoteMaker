@@ -26,10 +26,10 @@ Rename first and last commit in output: Give them better names than a commit num
 
 > FIXED
 
-### `F002`: Add date to release note `OPEN`
+### `F002`: Add date to release note `FIXED`
 Add date to release note: The date of the commit with the version number should be added.
 
-> OPEN
+> FIXED
 
 # Release notes
 ## v0.1
