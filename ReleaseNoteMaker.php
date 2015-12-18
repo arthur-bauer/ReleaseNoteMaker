@@ -47,12 +47,11 @@ $log= "\n## $tags[$j]\n";
 // let's get the tag message here and add it to the output
 $tagmessage=`git show $tags[$j]`;
 $tagmessage=explode("\n",$tagmessage);
-if ($tagmessage[4]) $log.="**".trim($tagmessage[4])."**";
+if ($tagmessage[4]) $log.="**".trim($tagmessage[4])."**  ";
 
 // let's get the commit date here and add it to the output
-$tagtime=`git show --pretty=tformat:%at $tags[$j]`;
-$tagtime=explode("\n",$tagtime);
-if ($tagtime[4]) $log.=", ".date("Y-m-d",$tagtime[4])."  \n";
+$tagtime=`git log --pretty=tformat:%at $tags[$j] | head -n 1`;
+if ($tagtime) $log.="\n".date("Y-m-d",$tagtime)."  \n";
 
 
 
