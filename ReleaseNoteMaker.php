@@ -38,7 +38,13 @@ $j=$i+1;
 
 // This command creates the actual release note, greps out commits that contain "(minor)", "Todo" and "Version number"/"Versionsnummer"
 // Feel free to add more greps if needed 
-$com="git log --reverse --no-merges --pretty=format:\"* %s\" ".$tags[$i]."..".$tags[$j]." | grep -v \(minor\) | grep -vi \"Todo\" | grep -vi \"Version number\" | grep -vi \"Versionsnummer\" ";
+
+$grepstring="";
+$greppers=array("\(minor\)","Todo aktualisiert");//,"Version[s| ]num[m|b]er");
+
+foreach ($greppers as $grep1) $grepstring.=" | grep -vi '$grep1'";
+
+$com="git log --reverse --no-merges --pretty=format:\"* %s\" ".$tags[$i]."..".$tags[$j]."  ".$grepstring;
 
 if ($tags[$j]!="HEAD") 
 {
