@@ -8,6 +8,12 @@ ReleaseNoteMaker: A PHP script to generate a complete Release Note list from you
     cd <path/to/repo>
     <path to ReleaseNotemaker.php> > ReleaseNotes.md
 
+or, if you have commits that are not part of the latest tagged version, you can also pass on two arguments
+
+    cd <path/to/repo>
+    <path to ReleaseNotemaker.php> > ReleaseNotes.md <versionsnummer> <shortdescription>
+
+
 You probably want to clean up unnecessary or double commits in the final list.
 
 The release notes at the end of this document are created with the script.

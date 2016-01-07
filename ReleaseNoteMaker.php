@@ -3,6 +3,8 @@
 date_default_timezone_set("Europe/Berlin");
 // v0.5, 2015-12-18
 
+$cv=$argv;
+
 $tags=trim(`git tag -l "v*" `); // get all the tags that start with a "v"
 
 $tags=explode("\n",$tags);
@@ -70,8 +72,18 @@ else
 $check=`$com`;
 if ($check!==NULL)
 {
+if (!$cv[1])
+{
 $log= "\n## Current version (not yet released)\n";
+$log.=date("Y-m-d")."  \n";
 $log.= "*Changes from `$tags[$i]` to current version:*\n\n";
+}
+else
+{
+$log= "\n## $cv[1]".($cv[2]?"\n**$cv[2]**  ":"");
+$log.="\n".date("Y-m-d")."  \n";
+$log.= "*Changes from `$tags[$i]` to `$cv[1]`:*\n\n";
+}
 $log.= `$com`;
 }
 }
