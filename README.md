@@ -12,6 +12,12 @@ You probably want to clean up unnecessary or double commits in the final list.
 
 The release notes at the end of this document are created with the script.
 
+### Good practices
+
+* Create a version tag starting with `v`, e.g. `v1.3.4`
+* Add a short summary in the tag message, e.g. `Bugfix release. Fixes B002 and B003`
+
+
 Contact
 ===============
 arthurbauer@mac.com
