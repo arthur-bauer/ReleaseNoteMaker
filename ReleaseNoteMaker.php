@@ -1,7 +1,9 @@
 #!/usr/bin/php
 <?php
 date_default_timezone_set("Europe/Berlin");
-// v0.5, 2015-12-18
+// v1.0 2016-01-11
+
+$cv=$argv;
 
 $tags=trim(`git tag -l "v*" `); // get all the tags that start with a "v"
 
@@ -38,7 +40,13 @@ $j=$i+1;
 
 // This command creates the actual release note, greps out commits that contain "(minor)", "Todo" and "Version number"/"Versionsnummer"
 // Feel free to add more greps if needed 
-$com="git log --reverse --no-merges --pretty=format:\"* %s\" ".$tags[$i]."..".$tags[$j]." | grep -v \(minor\) | grep -vi \"Todo\" | grep -vi \"Version number\" | grep -vi \"Versionsnummer\" ";
+
+$grepstring="";
+$greppers=array("\(minor\)","Todo aktualisiert");//,"Version[s| ]num[m|b]er");
+
+foreach ($greppers as $grep1) $grepstring.=" | grep -vi '$grep1'";
+
+$com="git log --reverse --no-merges --pretty=format:\"* %s\" ".$tags[$i]."..".$tags[$j]."  ".$grepstring;
 
 if ($tags[$j]!="HEAD") 
 {
@@ -64,8 +72,18 @@ else
 $check=`$com`;
 if ($check!==NULL)
 {
+if (!$cv[1])
+{
 $log= "\n## Current version (not yet released)\n";
+$log.=date("Y-m-d")."  \n";
 $log.= "*Changes from `$tags[$i]` to current version:*\n\n";
+}
+else
+{
+$log= "\n## $cv[1]".($cv[2]?"\n**$cv[2]**  ":"");
+$log.="\n".date("Y-m-d")."  \n";
+$log.= "*Changes from `$tags[$i]` to `$cv[1]`:*\n\n";
+}
 $log.= `$com`;
 }
 }

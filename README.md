@@ -8,9 +8,21 @@ ReleaseNoteMaker: A PHP script to generate a complete Release Note list from you
     cd <path/to/repo>
     <path to ReleaseNotemaker.php> > ReleaseNotes.md
 
+or, if you have commits that are not part of the latest tagged version, you can also pass on two arguments
+
+    cd <path/to/repo>
+    <path to ReleaseNotemaker.php> > ReleaseNotes.md <versionsnummer> <shortdescription>
+
+
 You probably want to clean up unnecessary or double commits in the final list.
 
 The release notes at the end of this document are created with the script.
+
+### Good practices
+
+* Create a version tag starting with `v`, e.g. `v1.3.4`
+* Add a short summary in the tag message, e.g. `Bugfix release. Fixes B002 and B003`
+
 
 Contact
 ===============
@@ -40,6 +52,7 @@ Add date to release note: The date of the commit with the version number should 
 * Created empty script
 * First running version of the script
 * Added a small routine to create release notes for the first version as well.
+* Updated version number
 
 ## v0.2
 **Second release**  
@@ -53,6 +66,7 @@ Add date to release note: The date of the commit with the version number should 
 * Adjusted Markdown output
 * Removed path to project from Release notes header
 * Improved markdown for subline
+* Release notes and version number updated
 
 ## v0.3
 **Third release**  
@@ -65,6 +79,7 @@ Add date to release note: The date of the commit with the version number should 
 * Only creates output if there is actually anything new since the last version tag
 * Bugfix: Last entry was repeated under certain circumstances
 * Cleaner sorting of versions
+* Version number updated
 
 ## v0.4
 **Fourth release**  
@@ -72,6 +87,7 @@ Add date to release note: The date of the commit with the version number should 
 *Changes from `v0.3` to `v0.4`:*
 
 * Switched to a more reliable sort function for version-numbers
+* Version number updated
 
 ## v0.5
 **Last development release**  
@@ -82,3 +98,12 @@ Add date to release note: The date of the commit with the version number should 
 * Small bugfix for tag commit message that messed up the markdown
 * New routine to add the commit date to the notes
 * Bugfix on the date routine
+* Version number updated
+
+## v1.0
+**First Release**  
+2016-01-11  
+*Changes from `v0.5` to `v1.0`:*
+
+* Changed grep routine to make it easier to add or remove grep strings
+* Added possibility to add parameters
