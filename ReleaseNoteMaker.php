@@ -1,7 +1,7 @@
 #!/usr/bin/php
 <?php
 date_default_timezone_set("Europe/Berlin");
-// v0.5, 2015-12-18
+// v1.0 2016-01-11
 
 $cv=$argv;
 
