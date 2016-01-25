@@ -18,11 +18,23 @@ You probably want to clean up unnecessary or double commits in the final list.
 
 The release notes at the end of this document are created with the script.
 
+### Filtering
+The script contains a simple routine to filter out some commits. Per default, the following commits are **not** part of the release notes:
+
+* Commits that contain `(minor)`
+* Commits that contain `Todo aktualisiert`
+
+This can be changed in the script. You can add, delete or edit filters here:
+
+```
+$greppers=array("\(minor\)","Todo aktualisiert");
+```
+
 ### Good practices
 
 * Create a version tag starting with `v`, e.g. `v1.3.4`
 * Add a short summary in the tag message, e.g. `Bugfix release. Fixes B002 and B003`
-
+* Use the filter function to hide commits. E.g. use `(minor)` in the commit message when you just fixed a typo, or if you cleaned up the code etc.
 
 Contact
 ===============
