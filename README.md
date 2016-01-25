@@ -113,9 +113,19 @@ Add date to release note: The date of the commit with the version number should 
 * Version number updated
 
 ## v1.0
-**First Release**  
+**First release**  
 2016-01-11  
 *Changes from `v0.5` to `v1.0`:*
 
 * Changed grep routine to make it easier to add or remove grep strings
 * Added possibility to add parameters
+* Version number updated
+
+## v1.1
+**Bugfix release**  
+2016-01-25  
+*Changes from `v1.0` to `v1.1`:*
+
+* If no tags found, get the first commit instead. Closes #1
+* Add description about commit filter. Closes #2
+* Updated readme and version number
