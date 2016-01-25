@@ -19,6 +19,7 @@ $tags=explode("\n",$tags);
 
 usort($tags, 'version_compare');
 
+if (!$tags[0]) $notags=true;
 
 $counter=count($tags)-1;
 
@@ -32,6 +33,13 @@ echo "# Release notes";
 $commit1=`git log --oneline | tail -n 1`;
 $commit1=explode(" ",$commit1);
 array_unshift($tags,$commit1[0]);
+
+if ($notags) 
+{
+$tags[0]=trim(`git log --reverse  --oneline | head -n 1 | awk '{print $1}'`);
+$tags[1]="HEAD";
+$firstcom=$tags[0];
+}
 
 // loop through all the tags and create an output for that version
 for ($i=0;$i<=$counter+1;$i++)
