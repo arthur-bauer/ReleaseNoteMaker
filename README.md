@@ -35,6 +35,7 @@ $greppers=array("\(minor\)","Todo aktualisiert");
 * Create a version tag starting with `v`, e.g. `v1.3.4`
 * Add a short summary in the tag message, e.g. `Bugfix release. Fixes B002 and B003`
 * Use the filter function to hide commits. E.g. use `(minor)` in the commit message when you just fixed a typo, or if you cleaned up the code etc.
+* Adjust the filters according to your workflow and preferences 
 
 Contact
 ===============
