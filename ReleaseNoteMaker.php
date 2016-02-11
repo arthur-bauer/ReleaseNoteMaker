@@ -82,7 +82,40 @@ for ($i=0;$i<=$counter+1;$i++)
 		{
 			if (!$cv[1])
 			{
-				$log= "\n## Current version (not yet released)\n";
+				//! here we have a closer look at the new stuff to find out what kind of version number we get.
+				$closelook=explode("\n",trim($check));
+				$closelookcount=count($closelook);
+				$major=$minor=$bugfix=false;
+
+				foreach ($closelook as $closelookline)
+				{
+				if (strpos($closelookline, "(!)"))
+				{
+					$major=true;
+					$annot[]=trim(str_replace("* ","",trim(str_replace("(!)","",$closelookline))));
+				}
+				if (strpos($closelookline, "(+)")) 
+				{
+					$minor=true;
+					$annot[]=trim(str_replace("* ","",trim(str_replace("(+)","",$closelookline))));
+				
+				}
+				}
+				if ($closelookcount>10) {
+					$minor=true;
+$annot[]="Maintenance release";
+}
+
+				$oldvn=explode(".",str_replace("v","",$tags[$i]));
+				if ($major) $newvn=($oldvn[0]+1).".0";
+				else if ($minor) $newvn=$oldvn[0].".".($oldvn[1]+1);
+				else 
+				{
+					$newvn=$oldvn[0].".".$oldvn[1].".".($oldvn[2]+1);
+$annot[]="Bugfix release";
+}
+				$log= "\n## Current version (not yet released, upcoming v$newvn)  \n";
+				if ($annot) $log.="**".join(", ",$annot)."**  \n";
 				$log.=date("Y-m-d")."  \n";
 				$log.= "*Changes from `$tags[$i]` to current version:*\n\n";
 			}

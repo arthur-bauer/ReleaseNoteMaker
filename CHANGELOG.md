@@ -73,8 +73,10 @@
 * Add description about commit filter. Closes #2
 * Updated readme and version number
 
-## Current version (not yet released)
-2016-02-05  
+## Current version (not yet released, upcoming v2.0)  
+*  Version number proposal2016-02-11  
 *Changes from `v1.1` to current version:*
 
 * Updated documentation
+* Reformat whitespace. Added Coda style comments
+* (!) Version number proposal
