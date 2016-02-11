@@ -82,4 +82,5 @@
 * Reformat whitespace. Added Coda style comments
 * Version number proposal (+)
 * Little bug fix if there was no tag yet
-* Updated readme.md, added version number proposal explanation.
+* Updated README.md, added version number proposal explanation.
+* Updated README.md to explain the new syntax for commit messages.
