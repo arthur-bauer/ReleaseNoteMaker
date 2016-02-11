@@ -100,21 +100,25 @@ for ($i=0;$i<=$counter+1;$i++)
 				
 				}
 				}
-				if ($closelookcount>10) {
-					$minor=true;
-					$annot[]="Maintenance release";
-}
-
+		
 				$oldvn=explode(".",str_replace("v","",$tags[$i]));
-				if ($major) $newvn=($oldvn[0]+1).".0";
-				else if ($minor) $newvn=$oldvn[0].".".($oldvn[1]+1);
+				if ($major) 
+				{
+					$newvn=($oldvn[0]+1).".0";
+					if (!$annot) $annot[]="Major release";
+				}
+				else if ($minor or $closelookcount>10) {
+					$newvn=$oldvn[0].".".($oldvn[1]+1);
+					if (!$annot) $annot[]="Maintenance release";
+					//else $annot[]="feature release";
+				}
 				else 
 				{
 					$newvn=$oldvn[0].".".$oldvn[1].".".($oldvn[2]+1);
-					$annot[]="Bugfix release";
+					$annot[]="Small bugfix release";
 }
-				$log= "\n## Current version (not yet released, upcoming v$newvn)  \n";
-				if ($annot) $log.="**".join(", ",$annot)."**  \n";
+				$log= "\n## Upcoming version v$newvn *(not yet released)*  \n";
+				if ($annot) $log.="**New:** ".join(", ",$annot)."  \n";
 				$log.=date("Y-m-d")."  \n";
 				$log.= "*Changes from `$tags[$i]` to current version:*\n\n";
 			}
