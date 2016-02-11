@@ -30,6 +30,15 @@ This can be changed in the script. You can add, delete or edit filters here:
 $greppers=array("\(minor\)","Todo aktualisiert");
 ```
 
+### Version number proposal
+If there are commits that are not yet part of a release, the script will show them at the end of the log. It will also try to estimate the upcoming version number:
+
+- Commits with `(minor)` will be excluded from calculation
+- Commits with `(!)` will be considered commits that **break compatibility**. This will always create a **major** release version number (e.g. `v5.0`).
+- Commits with `(+)` will be considered commits that **add a major new feature**. This will always create a **minor** release version number (e.g. `v5.1`). Its commit text will be proposed as tag annotation.
+- More than 10 normal commits will also create a **minor** release version number (e.g. `v5.1`). The proposal for the tag annotation will be `Maintenance release`. 
+- Everything else (no (!) or (+) in the commit message, less than 10 commits) will be considered a bug fix release version number (e.g. `v5.1.1`). The proposal for the tag annotation will be `Small bugfix release`.
+
 ### Good practices
 
 * Create a version tag starting with `v`, e.g. `v1.3.4`
