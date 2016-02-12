@@ -33,11 +33,11 @@ $greppers=array("\(minor\)","Todo aktualisiert");
 ### Version number proposal
 If there are commits that are not yet part of a release, the script will show them at the end of the log. It will also try to estimate the upcoming version number based on the number of commits and their commit messages:
 
-- Commits with `(minor)` in the commit message will be excluded from calculation
-- Commits with `(!)` in their message will be considered commits that **break compatibility**. This will always create a **major** release version number (e.g. `v5.0`).
-- Commits with `(+)` will be considered commits that **add an important new feature**. This will always create a **minor** release version number (e.g. `v5.1`). Its commit text will be proposed as tag annotation.
-- More than 10 normal commits will also create a **minor** release version number (e.g. `v5.1`). The proposal for the tag annotation will be `Maintenance release`. 
-- Everything else (no (!) or (+) in the commit message, less than 10 commits) will be considered a bug fix release version number (e.g. `v5.1.1`). The proposal for the tag annotation will be `Small bugfix release`.
+- Commits with `(minor)` or other filtered strings in the commit message will be excluded from calculation (see above, *Filtering*).
+- Commits with `(!)` in their message will be considered commits that **break compatibility**. This will always create a **major** release version number (e.g. from `v4.2.1` to `v5.0`).
+- Commits with `(+)` will be considered commits that **add an important new feature**. This will always create a **minor** release version number (e.g. from `v5.0.2` to `v5.1`). Its commit text will be proposed as tag annotation.
+- More than 10 normal commits will also create a **minor** release version number (e.g. from `v5.0.2` to `v5.1`). The proposal for the tag annotation will be `Maintenance release`. 
+- Everything else (no (!) or (+) in the commit message, less than 10 commits) will be considered a bug fix release version number (e.g. from `v5.1` to `v5.1.1`). The proposal for the tag annotation will be `Small bugfix release`.
 
 ### Good practices
 
