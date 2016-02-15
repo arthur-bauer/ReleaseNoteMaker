@@ -1,7 +1,16 @@
 #!/usr/bin/php
 <?php
-date_default_timezone_set("Europe/Berlin");
 // v1.1 2016-01-25
+
+/* CONFIG AREA */
+
+$greppers=array("\(minor\)", "Todo aktualisiert"); // all these strings are filtered out
+$tagmajor="(!)"; // this string creates a major release
+$tagminor="(+)"; // this string creates a minor release
+
+/* END CONFIG AREA */
+
+date_default_timezone_set("Europe/Berlin");
 
 $cv=$argv;
 
@@ -50,7 +59,6 @@ for ($i=0;$i<=$counter+1;$i++)
 	// Feel free to add more greps if needed
 
 	$grepstring="";
-	$greppers=array("\(minor\)", "Todo aktualisiert");//,"Version[s| ]num[m|b]er");
 
 	foreach ($greppers as $grep1) $grepstring.=" | grep -vi '$grep1'";
 
@@ -88,15 +96,15 @@ for ($i=0;$i<=$counter+1;$i++)
 				$major=$minor=$bugfix=false;
 				foreach ($closelook as $closelookline)
 				{
-				if (strpos($closelookline, "(!)"))
+				if (strpos($closelookline, $tagmajor))
 				{
 					$major=true;
-					$annot[]=trim(str_replace("* ","",trim(str_replace("(!)","",$closelookline))));
+					$annot[]=trim(str_replace("* ","",trim(str_replace($tagmajor,"",$closelookline))));
 				}
-				if (strpos($closelookline, "(+)")) 
+				if (strpos($closelookline, $tagminor)) 
 				{
 					$minor=true;
-					$annot[]=trim(str_replace("* ","",trim(str_replace("(+)","",$closelookline))));
+					$annot[]=trim(str_replace("* ","",trim(str_replace($tagminor,"",$closelookline))));
 				
 				}
 				}
