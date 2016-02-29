@@ -144,6 +144,7 @@ for ($i=0;$i<=$counter+1;$i++)
 	//! replace "HEAD" and the first commit hash with a more human-readable text.
 	$log=str_replace("HEAD", "current version", $log);
 	$log=str_replace($commit1[0], "project start", $log);
+	$log=str_replace("vproject start..1", "v0.1", $log);
 	$log=str_replace("vproject start.1", "v0.1", $log);
 
 	echo $log;
