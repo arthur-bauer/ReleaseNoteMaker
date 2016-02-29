@@ -60,7 +60,7 @@ for ($i=0;$i<=$counter+1;$i++)
 
 	$grepstring="";
 
-	foreach ($greppers as $grep1) $grepstring.=" | grep -vi '$grep1'";
+	foreach ($greppers as $grep1) $grepstring.=" | grep -v '$grep1'";
 
 	$com="git log --reverse --no-merges --pretty=format:\"* %s\" ".$tags[$i]."..".$tags[$j]."  ".$grepstring;
 
