@@ -80,7 +80,7 @@ for ($i=0;$i<=$counter+1;$i++)
 
 
 		$log.= "*Changes from `$tags[$i]` to `$tags[$j]`:*\n\n";
-		$log.= `$com`;
+		$log.= join("\n",array_unique(explode("\n",`$com`)));
 	}
 	else
 	{
@@ -136,7 +136,7 @@ for ($i=0;$i<=$counter+1;$i++)
 				$log.="\n".date("Y-m-d")."  \n";
 				$log.= "*Changes from `$tags[$i]` to `$cv[1]`:*\n\n";
 			}
-			$log.= `$com`;
+			$log.= join("\n",array_unique(explode("\n",`$com`)));
 		}
 	}
 
