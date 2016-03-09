@@ -23,6 +23,7 @@ The script contains a simple routine to filter out some commits. Per default, th
 
 * Commits that contain `(minor)`
 * Commits that contain `Todo aktualisiert`
+* Commits that contain `(-)`
 
 This can be changed in the script. You can add, delete or edit filters here:
 
