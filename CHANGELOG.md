@@ -84,3 +84,12 @@
 * Little bug fix if there was no tag yet
 * Updated README.md, added version number proposal explanation.
 * Updated README.md to explain the new syntax for commit messages.
+
+## v1.2.1
+**Small bugfix release**  
+2016-03-09  
+*Changes from `v1.2` to `v1.2.1`:*
+
+* Little bug fix if there was no tag yet
+* Changed grep routine to be case-sensitive
+* Added a routine to filter out duplicate commits
