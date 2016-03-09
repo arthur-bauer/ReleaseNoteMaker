@@ -1,6 +1,6 @@
 #!/usr/bin/php
 <?php
-// v1.2 2016-02-22
+// v1.2.1 2016-03-09
 
 /* CONFIG AREA */
 
@@ -60,7 +60,7 @@ for ($i=0;$i<=$counter+1;$i++)
 
 	$grepstring="";
 
-	foreach ($greppers as $grep1) $grepstring.=" | grep -vi '$grep1'";
+	foreach ($greppers as $grep1) $grepstring.=" | grep -v '$grep1'";
 
 	$com="git log --reverse --no-merges --pretty=format:\"* %s\" ".$tags[$i]."..".$tags[$j]."  ".$grepstring;
 
@@ -80,7 +80,7 @@ for ($i=0;$i<=$counter+1;$i++)
 
 
 		$log.= "*Changes from `$tags[$i]` to `$tags[$j]`:*\n\n";
-		$log.= `$com`;
+		$log.= join("\n",array_unique(explode("\n",`$com`)));
 	}
 	else
 	{
@@ -136,7 +136,7 @@ for ($i=0;$i<=$counter+1;$i++)
 				$log.="\n".date("Y-m-d")."  \n";
 				$log.= "*Changes from `$tags[$i]` to `$cv[1]`:*\n\n";
 			}
-			$log.= `$com`;
+			$log.= join("\n",array_unique(explode("\n",`$com`)));
 		}
 	}
 
@@ -144,6 +144,7 @@ for ($i=0;$i<=$counter+1;$i++)
 	//! replace "HEAD" and the first commit hash with a more human-readable text.
 	$log=str_replace("HEAD", "current version", $log);
 	$log=str_replace($commit1[0], "project start", $log);
+	$log=str_replace("vproject start..1", "v0.1", $log);
 	$log=str_replace("vproject start.1", "v0.1", $log);
 
 	echo $log;
