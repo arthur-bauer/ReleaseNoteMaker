@@ -160,7 +160,7 @@ $alltrackedfiles= explode("\n",`git ls-tree -r HEAD --name-only`);
 foreach ($alltrackedfiles as $mytrackedfile)
 {
 $log2=trim(`git rev-list HEAD -- $mytrackedfile | wc -l`);
-if ($log2>0 and $mytrackedfile) echo "$mytrackedfile | $log2\n";
+if ($log2>$cv[3] and $mytrackedfile) echo "$mytrackedfile | $log2\n";
 }
 }
 
