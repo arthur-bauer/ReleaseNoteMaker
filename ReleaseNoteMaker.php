@@ -149,5 +149,19 @@ for ($i=0;$i<=$counter+1;$i++)
 
 	echo $log;
 	$log="";
+
+
 }
+// get revision number per file
+if ($cv[3])
+{
+echo "\n# Revision list\nFilename | Revision\n----|------:\n";
+$alltrackedfiles= explode("\n",`git ls-tree -r HEAD --name-only`);
+foreach ($alltrackedfiles as $mytrackedfile)
+{
+$log2=trim(`git rev-list HEAD -- $mytrackedfile | wc -l`);
+if ($log2>0 and $mytrackedfile) echo "$mytrackedfile | $log2\n";
+}
+}
+
 ?>
