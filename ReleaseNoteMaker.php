@@ -159,7 +159,7 @@ echo "\n# Revision list\nFilename | Revision\n----|------:\n";
 $alltrackedfiles= explode("\n",`git ls-tree -r HEAD --name-only`);
 foreach ($alltrackedfiles as $mytrackedfile)
 {
-$log2=trim(`git log --follow --oneline -- $mytrackedfile | wc -l`);
+$log2=trim(`git log --follow --oneline -- "$mytrackedfile" | wc -l`);
 if ($log2>$cv[3] and $mytrackedfile) echo "$mytrackedfile | $log2\n";
 }
 }
