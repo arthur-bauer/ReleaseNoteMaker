@@ -14,6 +14,12 @@ date_default_timezone_set("Europe/Berlin");
 
 $cv=$argv;
 
+if (is_numeric($cv[1]))
+{
+	$cv[3] = $cv[1];
+	$cv[1]="";
+}
+
 $tags=trim(`git tag -l "v*" `); // get all the tags that start with a "v"
 
 $tags=explode("\n", $tags);
