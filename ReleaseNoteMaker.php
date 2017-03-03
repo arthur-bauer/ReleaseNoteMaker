@@ -4,7 +4,7 @@
 
 /* CONFIG AREA */
 
-$greppers=array("\(minor\)", "Todo aktualisiert","(-)","(-m)"); // all these strings are filtered out
+$greppers=array("\(minor\)", "Todo aktualisiert","(-)","(-m)","Add build"); // all these strings are filtered out
 $tagmajor="(!)"; // this string creates a major release
 $tagminor="(+)"; // this string creates a minor release
 
